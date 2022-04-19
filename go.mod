@@ -7,7 +7,6 @@ require (
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/gorilla/sessions v1.2.0
 	github.com/julienschmidt/httprouter v1.3.0
-	github.com/tidwall/gjson v1.9.2
-	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/gjson v1.9.3
 	google.golang.org/appengine v1.6.5 // indirect
 )

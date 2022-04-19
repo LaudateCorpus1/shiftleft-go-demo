@@ -4,18 +4,20 @@ import (
 	"fmt"
 	"net/http"
 
+	_ "github.com/tidwall/gjson"
 	"github.com/julienschmidt/httprouter"
 
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/setting"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/setup"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/user"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/util"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/util/config"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/util/middleware"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/vulnerability/csa"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/vulnerability/idor"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/vulnerability/sqli"
-	"github.com/ShiftLeftSecurity/Helloshiftleft-internal/helloshiftleftgo/vulnerability/xss"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/setting"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/setup"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/user"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/util"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/util/config"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/util/middleware"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/vulnerability/csa"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/vulnerability/idor"
+	pathTraversal "github.com/ShiftLeftSecurity/shiftleft-go-demo/vulnerability/path-traversal"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/vulnerability/sqli"
+	"github.com/ShiftLeftSecurity/shiftleft-go-demo/vulnerability/xss"
 )
 
 const (
@@ -53,6 +55,7 @@ func main() {
 	xss := xss.New()
 	idor := idor.New()
 	csa := csa.New()
+	pathTraversal := pathTraversal.New()
 	setup := setup.New()
 	setting := setting.New()
 
@@ -65,6 +68,7 @@ func main() {
 	xss.SetRouter(router)
 	idor.SetRouter(router)
 	csa.SetRouter(router)
+	pathTraversal.SetRouter(router)
 	setup.SetRouter(router)
 	setting.SetRouter(router)
 
